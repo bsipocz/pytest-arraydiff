@@ -20,20 +20,20 @@ def test_succeeds_func_text():
 
 @pytest.mark.array_compare(file_format='fits', reference_dir=reference_dir)
 def test_succeeds_func_fits():
-    return np.arange(3 * 5).reshape((3, 5))
+    return np.arange(3 * 5).reshape((3, 5)).astype(np.int64)
 
 
 @pytest.mark.array_compare(file_format='fits', reference_dir=reference_dir)
 def test_succeeds_func_fits_hdu():
     from astropy.io import fits
-    return fits.PrimaryHDU(np.arange(3 * 5).reshape((3, 5)))
+    return fits.PrimaryHDU(np.arange(3 * 5).reshape((3, 5)).astype(np.int64))
 
 
 class TestClass(object):
 
     @pytest.mark.array_compare(file_format='fits', reference_dir=reference_dir)
     def test_succeeds_class(self):
-        return np.arange(2 * 4 * 3).reshape((2, 4, 3))
+        return np.arange(2 * 4 * 3).reshape((2, 4, 3)).astype(np.int64)
 
 
 TEST_FAILING = """
